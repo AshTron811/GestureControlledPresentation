@@ -13,6 +13,10 @@ pathImages = sorted(os.listdir(folderPath), key=len)
 
 imgNumber = 0
 hs, ws = 120, 213
+gestureThreshold = 300
+buttonPressed = False
+buttonCounter = 0
+buttonDelay = 30
 
 detector = HandDetector(detectionCon=0.8, maxHands=1)
 
@@ -23,11 +27,33 @@ while True:
     imgCurrent = cv2.imread(pathFullImage)
 
     hands, img = detector.findHands(img, flipType=False)
+    cv2.line(img, (0, gestureThreshold), (width, gestureThreshold), (0, 255, 0), 10)
 
-    if hands:
+    if hands and buttonPressed is False:
         hand = hands[0]
         fingers = detector.fingersUp(hand)
-        print(fingers)
+        cx, cy = hand["center"]
+
+        if cy <= gestureThreshold:
+            if fingers == [0, 0, 0, 0, 1]:
+                print("Left")
+
+                if imgNumber > 0:
+                    buttonPressed = True
+                    imgNumber -= 1
+
+            if fingers == [1, 0, 0, 0, 0]:
+                print("Right")
+
+                if imgNumber < len(pathImages)-1:
+                    buttonPressed = True
+                    imgNumber += 1
+
+    if buttonPressed:
+        buttonCounter += 1
+        if buttonCounter > buttonDelay:
+            buttonCounter = 0
+            buttonPressed = False
 
     imgSmall = cv2.resize(img, (ws, hs))
     h, w, _ = imgCurrent.shape
