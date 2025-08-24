@@ -129,15 +129,6 @@ If your webcam is not `0`, change the `cv2.VideoCapture(0)` argument to the corr
 
 ---
 
-## Extending the project
-
-* Add keyboard fallback controls for systems where gestures are unreliable.
-* Add a GUI to choose the Presentation folder and tweak gesture settings on the fly.
-* Save annotations per-slide and export final annotated slides as images or a PDF.
-* Add a calibration step to adapt gesture thresholds to different users and cameras.
-
----
-
 ## Contributing
 
 Contributions are welcome! Open an issue or submit a pull request with a clear description of changes and any testing notes.
