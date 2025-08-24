@@ -134,11 +134,3 @@ If your webcam is not `0`, change the `cv2.VideoCapture(0)` argument to the corr
 Contributions are welcome! Open an issue or submit a pull request with a clear description of changes and any testing notes.
 
 ---
-
-If you want, I can also:
-
-* Generate a `requirements.txt` for you.
-* Convert annotations to permanent overlays saved per slide.
-* Add keyboard fallback controls or a CLI for configuration.
-
-Happy presenting! 🎤
